@@ -1,7 +1,7 @@
 const router = require('express').Router();
 
 const patientController = require('../controllers/patientController');
-const { loginValidation, registerValidation } = require('../middlewares/userValidator');
+const { loginValidation, registerValidation } = require('../middlewares/patientValidator');
 const loginLimiter = require('../middlewares/loginLimiter');
 
 router.post('/login', loginValidation, loginLimiter, patientController.login);
