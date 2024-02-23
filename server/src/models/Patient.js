@@ -14,7 +14,7 @@ const patientSchema = new mongoose.Schema({
     password: {
         type: String,
     },
-    appointemts: [
+    appointments: [
         {
             type: mongoose.Types.ObjectId,
             ref: Appointment,
