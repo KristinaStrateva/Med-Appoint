@@ -1,9 +1,9 @@
 const asyncHandler = require('express-async-handler');
+const { validationResult } = require('express-validator');
 const bcrypt = require('bcrypt');
 
 const Patient = require('../models/Patient');
-const { accessTokenGenerator, refreshTokenGenerator } = require('../utils/tokenGenerator');
-// const { validationResult } = require('express-validator');
+const { accessTokenGenerator } = require('../utils/tokenGenerator');
 
 // @desc Sign in existing user
 // @route POST /login
@@ -11,19 +11,10 @@ const { accessTokenGenerator, refreshTokenGenerator } = require('../utils/tokenG
 
 const login = asyncHandler(async (req, res) => {
     const { email, password } = req.body;
-    // const { errors } = validationResult(req);
+    const { errors } = validationResult(req);
 
-    // if (errors.length) {
-    //     res.status(400);
-    //     throw new Error(errors.map(err => err.msg));
-    // }
-
-    if (!email) {
-        return res.status(400).json({ message: 'Email is required!' });
-    }
-
-    if (!password) {
-        return res.status(400).json({ message: 'Password is required!' });
+    if (errors.length !== 0) {
+        return res.status(400).json({ message: errors[0].msg });
     }
 
     const user = await Patient.findOne({ email })?.populate('appointments');
@@ -39,16 +30,8 @@ const login = asyncHandler(async (req, res) => {
     }
 
     const accessToken = await accessTokenGenerator(user);
-    const refreshToken = await refreshTokenGenerator(user);
 
-    res.cookie('jwt', refreshToken, {
-        httpOnly: true,
-        secure: true,
-        sameSite: 'None',
-        maxAge: 7 * 24 * 60 * 60 * 1000
-    });
-
-    // Have to check if it is necessary to make this userData object or to send only the accessToken
+    res.setHeader('Authorization', `Bearer ${accessToken}`);
     
     const userData = {
         id: user._id,
@@ -66,17 +49,10 @@ const login = asyncHandler(async (req, res) => {
 
 const register = asyncHandler(async (req, res) => {
     const { username, email, password } = req.body;
+    const { errors } = validationResult(req);
 
-    if (!username) {
-        return res.status(400).json({ message: 'Username is required!' });
-    }
-
-    if (!email) {
-        return res.status(400).json({ message: 'Email is required!' });
-    }
-
-    if (!password) {
-        return res.status(400).json({ message: 'Password is required!' });
+    if (errors.length !== 0) {
+        return res.status(400).json({ message: errors[0].msg });
     }
 
     const usernameExists = await Patient.findOne({ username }).lean();
@@ -91,13 +67,13 @@ const register = asyncHandler(async (req, res) => {
         return res.status(400).json({ message: 'Inavlid user data received!' });
     }
 
-    const token = await accessTokenGenerator(createdUser);
+    const accessToken = await accessTokenGenerator(createdUser);
 
     const userData = {
         id: createdUser._id,
         username: createdUser.username,
         email: createdUser.email,
-        token
+        accessToken
     };
 
     res.status(201).json(userData);
@@ -108,23 +84,10 @@ const register = asyncHandler(async (req, res) => {
 // @access Public
 
 const logout = (req, res) => {
-    const cookies = req.cookies;
-
-    if (!cookies?.jwt) {
-        return res.sendStatus(204);
-    }
-
-    req.user = {};
-
-    res.clearCookie('jwt', {
-        httpOnly: true,
-        sameSite: 'None',
-        secure: true
-    });
+    res.removeHeader('Authorization');
 
     res.json({
-        message: 'Cookie cleared',
-        success: 'Successfully logged out!'
+        message: 'Successfully logged out!'
     });
 };
 
