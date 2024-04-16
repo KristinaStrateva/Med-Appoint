@@ -7,12 +7,12 @@ const initializeDoctors = asyncHandler(async () => {
 
     if (existingDoctors.length === 0) {
         await Doctor.create([
-            { name: 'Dr. Peter Davidson', medSpeciality: 'General Practitioner/GP' },
-            { name: 'Dr. Paola Dhornan', medSpeciality: 'Pediatrician' },
-            { name: 'Dr. Louise Parker', medSpeciality: 'Ophthalmologist' },
-            { name: 'Dr. George Brown', medSpeciality: 'Rheumatologist' },
-            { name: 'Dr. Bethany Rose', medSpeciality: 'Ear, Nose and Throat/ENT' },
-            { name: 'Dr. David Noah', medSpeciality: 'Cardiologist' },
+            { name: 'Dr. Peter Davidson', medSpeciality: 'Neurology' },
+            { name: 'Dr. Paola Dhornan', medSpeciality: 'Pediatrics' },
+            { name: 'Dr. Louise Parker', medSpeciality: 'General Practice/GP' },
+            { name: 'Dr. George Brown', medSpeciality: 'Orthopedics' },
+            { name: 'Dr. Bethany Rose', medSpeciality: 'Dermatology' },
+            { name: 'Dr. David Noah', medSpeciality: 'Cardiology' },
         ]);
     }
 });
