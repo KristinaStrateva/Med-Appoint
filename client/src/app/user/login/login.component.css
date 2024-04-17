@@ -28,6 +28,8 @@
     opacity: 1;
     filter: blur(0);
     transition: .7s ease;
+    transition-delay: calc(.1s * var(--j));
+
 }
 
 .form-container.active .form-box.login .animation {
@@ -40,6 +42,11 @@
 .form-container .form-box.register {
     right: 0;
     padding: 0 40px 0 60px;
+    pointer-events: none;
+}
+
+.form-container.active .form-box.register {
+    pointer-events: auto;
 }
 
 .form-container .form-box.register .animation {
@@ -47,12 +54,14 @@
     opacity: 0;
     filter: blur(10px);
     transition: .7s ease;
+    transition-delay: calc(.1s * var(--j));
 }
 
 .form-container.active .form-box.register .animation {
     transform: translateX(0);
     opacity: 1;
     filter: blur(0);
+    transition-delay: calc(.1s * var(--i));
 }
 
 .form-box h2 {
@@ -98,8 +107,8 @@
     transition: .5s;
 }
 
-.input-box input:focus~label,
-.input-box input:valid~label {
+.input-box input:focus ~ label,
+.input-box input:valid ~ label {
     top: -5px;
     color: #43cc15;
 }
@@ -114,8 +123,8 @@
     transition: .5s;
 }
 
-.input-box input:focus~i,
-.input-box input:valid~i {
+.input-box input:focus ~ i,
+.input-box input:valid ~ i {
     color: #43cc15;
 }
 
@@ -158,13 +167,14 @@
     margin: 20px 0 10px;
 }
 
-.logreg-link p a {
+.logreg-link p button {
     color: #43cc15;
-    text-decoration: none;
+    border: none;
+    background-color: transparent;
     font-weight: 600;
 }
 
-.logreg-link p a:hover {
+.logreg-link p button:hover {
     text-decoration: underline;
 }
 
@@ -189,6 +199,7 @@
     opacity: 1;
     filter: blur(0);
     transition: .7s ease;
+    transition-delay: calc(.1s * var(--j));
 }
 
 .form-container.active .info-text.login .animation {
@@ -205,8 +216,23 @@
     pointer-events: none;
 }
 
+.form-container.active .info-text.register {
+    pointer-events: auto;
+}
+
 .form-container .info-text.register .animation {
     transform: translateX(-120%);
+    opacity: 0;
+    filter: blur(10px);
+    transition: .7s ease;
+    transition-delay: calc(.1s * var(--j));
+}
+
+.form-container.active .info-text.register .animation {
+    transform: translateX(0);
+    opacity: 1;
+    filter: blur(0);
+    transition-delay: calc(.1s * var(--i));
 }
 
 .info-text h2 {
@@ -225,13 +251,14 @@
     position: absolute;
     top: -4px;
     right: 0;
-    width: 850px;
+    width: 1000px;
     height: 600px;
     background: linear-gradient(45deg, #081b29, #43cc15);
     border-bottom: 3px solid #43cc15;
     transform: rotate(10deg) skewY(40deg);
     transform-origin: bottom right;
     transition: 1.5s ease;
+    transition-delay: 1.6s;
 }
 
 .form-container.active .bg-animate {
@@ -250,6 +277,7 @@
     transform: rotate(0) skewY(0);
     transform-origin: bottom left;
     transition: 1.5s ease;
+    transition-delay: .5s;
 }
 
 .form-container.active .bg-animate2 {
