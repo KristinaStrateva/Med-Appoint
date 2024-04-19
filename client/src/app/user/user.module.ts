@@ -4,6 +4,7 @@ import { LoginComponent } from './login/login.component';
 import { ProfileComponent } from './profile/profile.component';
 import { SharedModule } from '../shared/shared.module';
 import { UserRoutingModule } from './user-routing.module';
+import { RouterModule } from '@angular/router';
 
 
 
@@ -15,7 +16,8 @@ import { UserRoutingModule } from './user-routing.module';
   imports: [
     CommonModule,
     SharedModule,
-    UserRoutingModule
+    UserRoutingModule,
+    RouterModule
   ],
   exports: [
     LoginComponent,
