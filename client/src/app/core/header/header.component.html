@@ -16,9 +16,9 @@
         </div>
         <div class="col-lg-5 px-5 text-end">
             <div class="h-100 d-inline-flex align-items-center">
-                <a class="btn btn-sm-square rounded-circle bg-white text-primary me-0" href="/auth/login"><i class="bi bi-box-arrow-in-right"></i></a>
-                <a class="btn btn-sm-square rounded-circle bg-white text-primary me-2" href="/auth/profile"><i class="bi bi-person"></i></a>
-                <a class="btn btn-sm-square rounded-circle bg-white text-primary me-0" href="/auth/logout"><i class="bi bi-box-arrow-left"></i></a>
+                <a class="btn btn-sm-square rounded-circle bg-white text-primary me-0" routerLink="/auth/login"><i class="bi bi-box-arrow-in-right"></i></a>
+                <a class="btn btn-sm-square rounded-circle bg-white text-primary me-2" routerLink="/auth/profile"><i class="bi bi-person"></i></a>
+                <button class="btn btn-sm-square rounded-circle bg-white text-primary me-0" (click)="logoutHandler()"><i class="bi bi-box-arrow-left"></i></button>
             </div>
         </div>
     </div>
