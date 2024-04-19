@@ -1,0 +1,17 @@
+.col-lg-6.p-5.wow.fadeIn {
+    visibility: visible;
+    animation-delay: 0.1s;
+    animation-name: fadeIn;
+}
+
+.col-lg-6.wow.fadeIn {
+    visibility: visible;
+    animation-delay: 0.5s;
+    animation-name: fadeIn;
+}
+
+.owl-stage  {
+    transform: translate3d(-2048px, 0px, 0px);
+    transition: all 0s ease 0s;
+    width: 4780px;
+}
