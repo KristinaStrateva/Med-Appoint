@@ -1,7 +1,14 @@
-const jwt = require('../lib/jwt');
+import jwt from '../lib/jwt';
+import { RequestHandler, Request } from 'express';
 
-const verifyJWT = async (req, res, next) => {
-    const authHeader = req.headers.authorization || req.headers.Authorization;
+interface CustomRequest extends Request {
+    user?: any;
+}
+
+const ACCESS_TOKEN_SECRET: string | undefined = process.env.ACCESS_TOKEN_SECRET;
+
+const verifyJWT: RequestHandler = async (req: CustomRequest, res, next) => {
+    const authHeader = req.headers.authorization || req.headers.Authorization as string;
 
     if (!authHeader?.startsWith('Bearer ')) {
         delete req.headers['Authorization'] || delete req.headers['authorization'];
@@ -12,13 +19,14 @@ const verifyJWT = async (req, res, next) => {
     const token = authHeader.split(' ')[1];
 
     try {
-        const decoded = await jwt.verify(token, process.env.ACCESS_TOKEN_SECRET);
+        const decoded = await jwt.verify(token, ACCESS_TOKEN_SECRET as string);
+        const userInfo = decoded;
 
-        req.user = decoded.UserInfo; // req.user = { _id, username, email }
+        req.user = userInfo; // req.user = { _id, username, email }
 
         next();
 
-    } catch (error) {
+    } catch (error: any) {
         delete req.headers['Authorization'] || delete req.headers['authorization'];
 
         if (error.name === 'TokenExpiredError') {
@@ -31,4 +39,4 @@ const verifyJWT = async (req, res, next) => {
     }
 };
 
-module.exports = verifyJWT;
+export default verifyJWT;

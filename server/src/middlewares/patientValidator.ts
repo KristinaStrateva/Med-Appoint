@@ -1,6 +1,7 @@
-const { body } = require('express-validator');
+import { body } from 'express-validator';
+import { RequestHandler } from 'express';
 
-const loginValidation = [
+const loginValidation: RequestHandler[] = [
     body('email')
         .notEmpty()
         .withMessage('Email is required!')
@@ -14,15 +15,15 @@ const loginValidation = [
         .trim(),
 ];
 
-const registerValidation = [
+const registerValidation: RequestHandler[] = [
     body('username')
         .notEmpty()
         .withMessage('Username is required!')
         .toLowerCase()
         .trim()
-        .isLength({min: 8})
+        .isLength({ min: 8 })
         .withMessage('Username must be at least 8 characters!')
-        .isLength({max: 15})
+        .isLength({ max: 15 })
         .withMessage('Username must be less than 15 characters!'),
     body('email')
         .notEmpty()
@@ -41,7 +42,4 @@ const registerValidation = [
         .withMessage('Password must contain at least 1 Capital letter and 1 digit!'),
 ];
 
-module.exports = {
-    loginValidation,
-    registerValidation,
-}
+export default { loginValidation, registerValidation };

@@ -1,15 +1,15 @@
-const express = require('express');
-const mongoose = require('mongoose');
+import express from 'express';
+import mongoose from 'mongoose';
 
-const expressConfigurator = require('./config/expressConfigurator');
-const dbConnect = require('./config/dbConfigurator');
-const routesConfigurator = require('./config/routesConfigurator');
+import dbConnect from './config/dbConfigurator';
+import expressConfigurator from './config/expressConfigurator';
+import routesConfigurator from './config/routesConfigurator';
 
 const PORT = process.env.PORT || 3500;
 
 const app = express();
 
-dbConnect(app);
+dbConnect();
 expressConfigurator(app);
 routesConfigurator(app);
 

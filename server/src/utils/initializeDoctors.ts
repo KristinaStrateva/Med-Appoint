@@ -1,8 +1,8 @@
-const asyncHandler = require('express-async-handler');
+// import asyncHandler from 'express-async-handler';
 
-const Doctor = require('../models/Doctor');
+import Doctor from '../models/Doctor';
 
-const initializeDoctors = asyncHandler(async () => {
+const initializeDoctors = async () => {
     const existingDoctors = await Doctor.find();
 
     if (existingDoctors.length === 0) {
@@ -23,6 +23,6 @@ const initializeDoctors = asyncHandler(async () => {
             { name: 'Dr. Mariah Susane', medSpeciality: 'Dermatology' },
         ]);
     }
-});
+};
 
-module.exports = initializeDoctors;
+export default initializeDoctors;
