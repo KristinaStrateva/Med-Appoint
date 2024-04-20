@@ -17,8 +17,8 @@
     width: 850px;
     height: 500px;
     background: transparent;
-    border: 2px solid #6ae242;
-    box-shadow: 0 0 25px #6ae242;
+    border: 2px solid #204187;
+    box-shadow: 0 0 30px 15px #204187;
     overflow: hidden;
 }
 
@@ -107,7 +107,7 @@
 
 .input-box input:focus,
 .input-box input:valid {
-    border-bottom-color: #6ae242;
+    border-bottom-color: #204187;
 }
 
 .input-box label {
@@ -124,7 +124,7 @@
 .input-box input:focus ~ label,
 .input-box input:valid ~ label {
     top: -5px;
-    color: #6ae242;
+    color: #0a273b;
 }
 
 .input-box i {
@@ -139,7 +139,7 @@
 
 .input-box input:focus ~ i,
 .input-box input:valid ~ i {
-    color: #6ae242;
+    color: #193571;
 }
 
 .login-btn {
@@ -147,7 +147,7 @@
     width: 100%;
     height: 45px;
     background: transparent;
-    border: 2px solid #6ae242;
+    border: 2px solid #204187;
     outline: none;
     border-radius: 40px;
     cursor: pointer;
@@ -165,7 +165,7 @@
     left: 0;
     width: 100%;
     height: 300%;
-    background: linear-gradient(#081b29, #6ae242, #081b29, #6ae242);
+    background: linear-gradient(#0a273b, #204187, #0a273b, #204187);
     z-index: -1;
     transition: .5s;
 }
@@ -182,7 +182,7 @@
 }
 
 .logreg-link p button {
-    color: #6ae242;
+    color: #0a273b;
     border: none;
     background-color: transparent;
     font-weight: 600;
@@ -267,8 +267,8 @@
     right: 0;
     width: 1000px;
     height: 600px;
-    background: linear-gradient(45deg, #081b29, #54ee20);
-    border-bottom: 3px solid #6ae242;
+    background: linear-gradient(45deg, #082030, #3860b8);
+    border-bottom: 3px solid #204187;
     transform: rotate(10deg) skewY(40deg);
     transform-origin: bottom right;
     transition: 1.5s ease;
@@ -287,7 +287,7 @@
     width: 850px;
     height: 770px;
     background: #0463FA;
-    border-top: 3px solid #6ae242;
+    border-top: 3px solid #204187;
     transform: rotate(0) skewY(0);
     transform-origin: bottom left;
     transition: 1.5s ease;
