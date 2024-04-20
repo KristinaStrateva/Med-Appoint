@@ -8,6 +8,7 @@ import { MainRoutingModule } from './main-routing.module';
 import { ContactComponent } from './contact/contact.component';
 import { RouterModule } from '@angular/router';
 import { FeaturesComponent } from './features/features.component';
+import { AppointmentComponent } from './appointment/appointment.component';
 
 
 
@@ -17,7 +18,8 @@ import { FeaturesComponent } from './features/features.component';
     HomePageComponent,
     AboutComponent,
     ContactComponent,
-    FeaturesComponent
+    FeaturesComponent,
+    AppointmentComponent
   ],
   imports: [
     CommonModule,
