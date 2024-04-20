@@ -5,8 +5,6 @@ import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { CoreModule } from './core/core.module';
 import { SharedModule } from './shared/shared.module';
-import { MainModule } from './main/main.module';
-// import { UserModule } from './user/user.module';
 import { NotFoundComponent } from './not-found/not-found.component';
 
 @NgModule({
@@ -18,8 +16,6 @@ import { NotFoundComponent } from './not-found/not-found.component';
     BrowserModule,
     CoreModule,
     SharedModule,
-    MainModule,
-    // UserModule,
     HttpClientModule,
     AppRoutingModule,
   ],
