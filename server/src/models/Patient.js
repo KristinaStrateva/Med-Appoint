@@ -6,10 +6,10 @@ const Appointment = require('./Appointment');
 const patientSchema = new mongoose.Schema({
     email: {
         type: String,
-    },
-    username: {
-        type: String,
         unique: true,
+    },
+    name: {
+        type: String,
     },
     password: {
         type: String,

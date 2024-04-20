@@ -84,6 +84,12 @@
     text-align: center;
 }
 
+.form-box .reg-names {
+    display: flex;
+    gap: 1em;
+    height: 70px;
+}
+
 .form-box .input-box {
     position: relative;
     width: 100%;
