@@ -8,6 +8,7 @@ const doctorSchema = new mongoose.Schema({
     },
     medSpeciality: {
         type: String,
+        enum: ['General Practice/GP', 'Pediatrics', 'Orthopedics', 'Neurology', 'Cardiology', 'Dermatology']
     },
     appointments: [
         {
