@@ -12,5 +12,12 @@ export class LoginComponent {
 
   toggleForm(): void {
     this.isActive = !this.isActive;
+
+  get registerFormControls() {
+    return this.registerForm.controls;
+  }
+  registerSubmitHandler() {
+    const { firstName, lastName, registerEmail, registerPassword, rePassword } = this.registerForm.value;
+    console.log(firstName, lastName, registerEmail, registerPassword, rePassword);
   }
 }

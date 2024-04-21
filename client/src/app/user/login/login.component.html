@@ -1,22 +1,21 @@
 <div class="wrapper">
-    <div class="form-container" [ngClass]="isActive ? 'active' : ''">
+    <div class="form-container" [ngClass]="isLoginActive ? '' : 'active'">
         <span class="bg-animate"></span>
         <span class="bg-animate2"></span>
         <div class="form-box login">
             <h2 class="animation" style="--i:0; --j:21">Sign In</h2>
-            <form>
+            <form [formGroup]="loginForm" (ngSubmit)="loginSubmitHandler()">
                 <div class="input-box animation" style="--i:1; --j:22">
-                    <input type="email" name="email" id="loginEmail" required>
-                    <label for="email">E-mail</label>
+                    <input type="email" formControlName="loginEmail" id="loginEmail" required>
+                    <label for="loginEmail">E-mail</label>
                     <i class="fa-solid fa-envelope"></i>
                 </div>
                 <div class="input-box animation" style="--i:2; --j:23">
-                    <input type="password" name="password" id="loginPassword" required>
-                    <label for="password">Password</label>
+                    <input type="password" formControlName="loginPassword" id="loginPassword" required>
+                    <label for="loginPassword">Password</label>
                     <i class="fa-solid fa-lock"></i>
                 </div>
-                <button type="submit" class="login-btn animation" style="--i:3; --j:24"
-                    (click)="loginSubmitHandler($event)">Sign In</button>
+                <button type="submit" class="login-btn animation" style="--i:3; --j:24">Sign In</button>
                 <div class="logreg-link animation" style="--i:4; --j:25">
                     <p>Don't have an account? <button type="button" class="register-link" (click)="toggleForm()">Sign
                             Up</button></p>
@@ -31,35 +30,34 @@
 
         <div class="form-box register">
             <h2 class="animation" style="--i:17; --j:0">Sign Up</h2>
-            <form>
+            <form [formGroup]="registerForm" (ngSubmit)="registerSubmitHandler()">
                 <div class="reg-names">
                     <div class="input-box animation" style="--i:18; --j:1">
-                        <input type="text" name="first-name" id="first-name" required>
-                        <label for="first-name">First Name</label>
+                        <input type="text" formControlName="firstName" id="firstName" required>
+                        <label for="firstName">First Name</label>
                     </div>
                     <div class="input-box animation" style="--i:18; --j:1">
-                        <input type="text" name="last-name" id="last-name" required>
-                        <label for="last-name">Last Name</label>
+                        <input type="text" formControlName="lastName" id="lastName" required>
+                        <label for="lastName">Last Name</label>
                         <i class="fa-solid fa-user"></i>
                     </div>
                 </div>
                 <div class="input-box animation" style="--i:19; --j:2">
-                    <input type="email" name="email" id="registerEmail" required>
-                    <label for="email">E-mail</label>
+                    <input type="email" formControlName="registerEmail" id="registerEmail" required>
+                    <label for="registerEmail">E-mail</label>
                     <i class="fa-solid fa-envelope"></i>
                 </div>
                 <div class="input-box animation" style="--i:20; --j:3">
-                    <input type="password" name="password" id="registerPassword" required>
-                    <label for="password">Password</label>
+                    <input type="password" formControlName="registerPassword" id="registerPassword" required>
+                    <label for="registerPassword">Password</label>
                     <i class="fa-solid fa-lock"></i>
                 </div>
                 <div class="input-box animation" style="--i:21; --j:4">
-                    <input type="password" name="rePassword" id="rePassword" required>
-                    <label for="rePassword">Repeat password</label>
+                    <input type="password" formControlName="rePassword" id="rePassword" required>
+                    <label for="rePassword">Repeat Password</label>
                     <i class="fa-solid fa-lock"></i>
                 </div>
-                <button type="submit" class="login-btn animation" style="--i:22; --j:5"
-                    (click)="registerSubmitHandler($event)">Sign Up</button>
+                <button type="submit" class="login-btn animation" style="--i:22; --j:5">Sign Up</button>
                 <div class="logreg-link animation" style="--i:23; --j:6">
                     <p>Already have an account? <button type="button" class="login-link" (click)="toggleForm()">Sign
                             In</button></p>
@@ -69,8 +67,7 @@
         <div class="info-text register">
             <h2 class="animation" style="--i:17; --j:0">Welcome!</h2>
             <p class="animation" style="--i:18; --j:1">Become part of our comunity of individuals dedicated to
-                maintaining
-                their health. Sign up now to book your appointments with ease.</p>
+                maintaining their health. Sign up now to book your appointments with ease.</p>
         </div>
     </div>
 </div>
