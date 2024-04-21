@@ -39,8 +39,8 @@ const login = asyncHandler(async (req: Request, res: Response): Promise<void> =>
 
     const userData = {
         id: user._id,
-        name: user.name,
-        email: user.email,
+        firstName: user.firstName,
+        lastName: user.lastName,
         accessToken,
     };
 
@@ -79,7 +79,8 @@ const register = asyncHandler(async (req: Request, res: Response): Promise<void>
 
     const userData = {
         id: createdUser._id,
-        name: createdUser.name,
+        firstName: createdUser.firstName,
+        lastName: createdUser.lastName,
         email: createdUser.email,
         accessToken
     };

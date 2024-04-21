@@ -3,19 +3,23 @@ import bcrypt from 'bcrypt';
 import Appointment from './Appointment';
 
 interface IPatient extends Document {
+    firstName: string;
+    lastName: string;
     email: string;
-    name: string;
     password: string;
     appointments: mongoose.Types.ObjectId[];
 }
 
 const patientSchema: Schema = new Schema({
+    firstName: {
+        type: String,
+    },
+    lastName: {
+        type: String,
+    },
     email: {
         type: String,
         unique: true,
-    },
-    name: {
-        type: String,
     },
     password: {
         type: String,
@@ -23,7 +27,7 @@ const patientSchema: Schema = new Schema({
     appointments: [
         {
             type: mongoose.Types.ObjectId,
-            ref: 'Appointment',
+            ref: Appointment,
         }
     ]
 });
