@@ -32,13 +32,6 @@ const patientSchema: Schema = new Schema({
     ]
 });
 
-patientSchema.virtual('rePassword')
-    .set(function (this: IPatient, value: string) {
-        if (value !== this.password) {
-            throw new Error('Passwords don\'t match!');
-        }
-    });
-
 patientSchema.pre<IPatient>('save', async function () {
     const hash = await bcrypt.hash(this.password, 10);
 
