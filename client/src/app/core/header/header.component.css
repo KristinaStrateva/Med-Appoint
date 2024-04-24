@@ -1,0 +1,86 @@
+.h-100 {
+    height: 100% !important
+}
+
+.d-inline-flex {
+    display: inline-flex !important
+}
+
+.align-items-center {
+    align-items: center !important
+}
+
+.btn {
+    display: inline-block;
+    font-weight: 400;
+    line-height: 1.5;
+    color: #8D8E92;
+    text-align: center;
+    vertical-align: middle;
+    cursor: pointer;
+    user-select: none;
+    background-color: transparent;
+    border: 1px solid transparent;
+    padding: .375rem .75rem;
+    font-size: 1rem;
+    border-radius: 8px;
+    transition: color 0.15s ease-in-out, background-color 0.15s ease-in-out, border-color 0.15s ease-in-out, box-shadow 0.15s ease-in-out
+}
+
+@media (prefers-reduced-motion: reduce) {
+    .btn {
+        transition: none
+    }
+}
+
+.btn:hover {
+    color: #8D8E92
+}
+
+.btn-check:focus + .btn,
+.btn:focus {
+    outline: 0;
+    box-shadow: 0 0 0 .25rem rgba(4, 99, 250, 0.25)
+}
+
+.btn:disabled,
+.btn.disabled,
+fieldset:disabled .btn {
+    pointer-events: none;
+    opacity: .65
+}
+
+.btn-sm-square {
+    width: 32px;
+    height: 32px;
+}
+
+.btn-square,
+.btn-sm-square,
+.btn-lg-square {
+    padding: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-weight: normal;
+}
+
+.rounded-circle {
+    border-radius: 50% !important
+}
+
+.bg-white {
+    background-color: #fff !important
+}
+
+.text-primary {
+    color: #0463FA !important
+}
+
+.me-0 {
+    margin-right: 0 !important
+}
+
+.me-2 {
+    margin-right: .5rem !important
+}
