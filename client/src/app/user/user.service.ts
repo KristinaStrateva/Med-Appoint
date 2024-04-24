@@ -34,7 +34,7 @@ export class PatientService {
           )
         },
         error: (errorResponse) => {
-          this.toastrService.error(errorResponse.error, 'Sign In Failed');
+          this.toastrService.error(errorResponse.error.message, 'Sign In Failed');
         }
       }
       ));
@@ -47,10 +47,10 @@ export class PatientService {
           this.login({ email: patientRegister.email, password: patientRegister.password });
         },
         error: (errorResponse) => {
-          this.toastrService.error(errorResponse.error, 'Sign Up Failed');
+          this.toastrService.error(errorResponse.error.message, 'Sign Up Failed');
         }
-      })
-    )
+      }
+      ));
   }
 
   logout() {
