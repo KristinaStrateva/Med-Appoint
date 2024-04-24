@@ -33,7 +33,6 @@ const login = asyncHandler(async (req: Request, res: Response): Promise<void> =>
         return;
     }
 
-    const accessToken = await accessTokenGenerator(user);
     const accessToken = await accessTokenGenerator(patient);
 
     res.setHeader('Authorization', `Bearer ${accessToken}`);
@@ -54,7 +53,7 @@ const login = asyncHandler(async (req: Request, res: Response): Promise<void> =>
 // @access Private
 
 const register = asyncHandler(async (req: Request, res: Response): Promise<void> => {
-    const { username, email, password } = req.body;
+    const { firstName, lastName, email, password, rePassword } = req.body;
     const result: Result = validationResult(req);
     const errors = result.array();
 
@@ -63,14 +62,19 @@ const register = asyncHandler(async (req: Request, res: Response): Promise<void>
         return;
     }
 
-    const usernameExists = await Patient.findOne({ username }).lean();
-
-    if (usernameExists) {
-        res.status(409).json({ message: 'Username already exists!' });
+    if (password !== rePassword) {
+        res.status(400).json({message: 'Passwords don\'t match!'});
         return;
     }
 
-    const createdUser = await Patient.create({ username, email, password });
+    const emailExists = await Patient.findOne({ email }).lean();
+
+    if (emailExists) {
+        res.status(409).json({ message: 'This email already exists!' });
+        return;
+    }
+
+    const createdUser = await Patient.create({ firstName, lastName, email, password });
 
     if (!createdUser) {
         res.status(400).json({ message: 'Invalid user data received!' });
@@ -84,7 +88,7 @@ const register = asyncHandler(async (req: Request, res: Response): Promise<void>
         firstName: createdUser.firstName,
         lastName: createdUser.lastName,
         email: createdUser.email,
-        accessToken
+        token: accessToken
     };
 
     res.status(201).json(userData);

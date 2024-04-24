@@ -16,15 +16,16 @@ const loginValidation: RequestHandler[] = [
 ];
 
 const registerValidation: RequestHandler[] = [
-    body('username')
+    body('firstName')
         .notEmpty()
-        .withMessage('Username is required!')
+        .withMessage('First Name is required!')
         .toLowerCase()
-        .trim()
-        .isLength({ min: 8 })
-        .withMessage('Username must be at least 8 characters!')
-        .isLength({ max: 15 })
-        .withMessage('Username must be less than 15 characters!'),
+        .trim(),
+    body('lastName')
+        .notEmpty()
+        .withMessage('Last Name is required!')
+        .toLowerCase()
+        .trim(),
     body('email')
         .notEmpty()
         .withMessage('Email is required!')
@@ -40,6 +41,14 @@ const registerValidation: RequestHandler[] = [
         .withMessage('Password must be at least 8 characters!')
         .matches(/^(?=.*\d)(?=.*[A-Z]).+$/)
         .withMessage('Password must contain at least 1 Capital letter and 1 digit!'),
+    body('rePassword')
+        .notEmpty()
+        .withMessage('Repeated password is required!')
+        .trim()
+        .isLength({ min: 8 })
+        .withMessage('Repeated password must be at least 8 characters!')
+        .matches(/^(?=.*\d)(?=.*[A-Z]).+$/)
+        .withMessage('Repeated password must contain at least 1 Capital letter and 1 digit!'),
 ];
 
 export default { loginValidation, registerValidation };
