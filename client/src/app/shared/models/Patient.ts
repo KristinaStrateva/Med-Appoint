@@ -1,9 +1,7 @@
-import { Appointment } from "./Appointment";
-
 export class Patient {
+    id!: string;
     firstName!: string;
     lastName!: string;
     email!: string;
-    password!: string;
-    appointments!: Appointment[];
+    token!: string;
 }
