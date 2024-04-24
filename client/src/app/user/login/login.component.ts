@@ -1,7 +1,9 @@
 import { Component, OnInit } from '@angular/core';
-import { FormBuilder, FormGroup, Validators } from '@angular/forms';
-import { PatientService } from '../user.service';
+import { FormBuilder, Validators } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
+import { ToastrService } from 'ngx-toastr';
+
+import { PatientService } from '../user.service';
 
 @Component({
   selector: 'app-login',
@@ -12,32 +14,28 @@ export class LoginComponent implements OnInit {
   isLoginActive: boolean = true;
   returnUrl = '';
 
-  loginForm!: FormGroup;
-  registerForm!: FormGroup;
+  loginForm = this.formBuilder.group({
+    loginEmail: ['', [Validators.required, Validators.email]],
+    loginPassword: ['', [Validators.required]],
+  });
 
-  constructor(private formBuilder: FormBuilder, private patientService: PatientService, private activatedRoute: ActivatedRoute, private router: Router) {
 
-  }
+  constructor(
+    private formBuilder: FormBuilder,
+    private patientService: PatientService,
+    private activatedRoute: ActivatedRoute,
+    private router: Router,
+    private toastrService: ToastrService,
+  ) { }
 
   toggleForm(): void {
     this.isLoginActive = !this.isLoginActive;
-  }
 
-  ngOnInit(): void {
     if (this.isLoginActive) {
-      this.loginForm = this.formBuilder.group({
-        loginEmail: ['', [Validators.required, Validators.email]],
-        loginPassword: ['', [Validators.required]],
-      });
+      this.loginForm.enable();
+
 
     } else {
-      this.registerForm = this.formBuilder.group({
-        firstName: ['', [Validators.required, Validators.pattern(/^[A-Za-z]+$/)]],
-        lastName: ['', [Validators.required, Validators.pattern(/^[A-Za-z]+$/)]],
-        registerEmail: ['', [Validators.required, Validators.email]],
-        registerPassword: ['', [Validators.required, Validators.minLength(8), Validators.pattern(/[A-Za-z0-9!._]+/)]],
-        rePassword: ['', [Validators.required]],
-      })
     }
 
     this.returnUrl = this.activatedRoute.snapshot.queryParams['returnUrl'];
@@ -52,21 +50,24 @@ export class LoginComponent implements OnInit {
   }
 
   loginSubmitHandler() {
-    if (this.isLoginActive) {
+    if (this.isLoginActive && this.loginForm && !this.loginForm.invalid) {
 
       this.patientService.login(
         {
-          email: this.loginFormControls['loginEmail'].value,
-          password: this.loginFormControls['loginPassword'].value
+          email: this.loginFormControls.loginEmail.value!,
+          password: this.loginFormControls.loginPassword.value!,
         }
       ).subscribe(() => {
         this.router.navigateByUrl(this.returnUrl);
       });
+    } else {
+      this.toastrService.error('Sign In form is not valid!');
+      return;
     }
+
+    this.loginForm.reset();
   }
 
   registerSubmitHandler() {
-    const { firstName, lastName, registerEmail, registerPassword, rePassword } = this.registerForm.value;
-    console.log(firstName, lastName, registerEmail, registerPassword, rePassword);
   }
 }

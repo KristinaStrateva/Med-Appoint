@@ -19,14 +19,14 @@ const login = asyncHandler(async (req: Request, res: Response): Promise<void> =>
         return;
     }
 
-    const user = await Patient.findOne({ email }).populate('appointments');
+    const patient = await Patient.findOne({ email }).populate('appointments');
 
-    if (!user) {
+    if (!patient) {
         res.status(401).json({ message: 'Unauthorized: Invalid email or password!' });
         return;
     }
 
-    const isValidPassword = await bcrypt.compare(password, user.password);
+    const isValidPassword = await bcrypt.compare(password, patient.password);
 
     if (!isValidPassword) {
         res.status(401).json({ message: 'Unauthorized: Invalid email or password!' });
@@ -34,17 +34,19 @@ const login = asyncHandler(async (req: Request, res: Response): Promise<void> =>
     }
 
     const accessToken = await accessTokenGenerator(user);
+    const accessToken = await accessTokenGenerator(patient);
 
     res.setHeader('Authorization', `Bearer ${accessToken}`);
 
-    const userData = {
-        id: user._id,
-        firstName: user.firstName,
-        lastName: user.lastName,
-        accessToken,
+    const patientData = {
+        id: patient._id,
+        firstName: patient.firstName,
+        lastName: patient.lastName,
+        email: patient.email,
+        token: accessToken,
     };
 
-    res.status(200).json(userData);
+    res.status(200).json(patientData);
 });
 
 // @desc Register new user
