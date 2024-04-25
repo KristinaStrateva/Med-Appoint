@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
-import { BehaviorSubject, Observable, tap } from 'rxjs';
+import { BehaviorSubject, Observable, switchMap, tap } from 'rxjs';
 import { ToastrService } from 'ngx-toastr';
 
 import { Patient } from '../shared/models/Patient';
@@ -42,10 +42,14 @@ export class PatientService {
 
   register(patientRegister: IPatientRegister): Observable<Patient> {
     return this.http.post<Patient>(PATIENT_REGISTER_URL, patientRegister).pipe(
+      switchMap((newPatient) => {
+        this.toastrService.success(
+          `Welcome to Christea Clinics, ${newPatient.firstName.toUpperCase()} ${newPatient.lastName.toUpperCase()}!`,
+          'Sign Up Successful'
+        );
+        return this.login({ email: patientRegister.email, password: patientRegister.password });
+      }),
       tap({
-        next: () => {
-          this.login({ email: patientRegister.email, password: patientRegister.password });
-        },
         error: (errorResponse) => {
           this.toastrService.error(errorResponse.error.message, 'Sign Up Failed');
         }
