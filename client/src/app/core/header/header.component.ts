@@ -16,5 +16,11 @@ export class HeaderComponent {
     })
   }
 
-  logoutHandler(): void { }
+  logoutHandler(): void {
+    this.patientService.logout();
+  }
+
+  get isAuth() {
+    return this.patient.token;
+  }
 }
