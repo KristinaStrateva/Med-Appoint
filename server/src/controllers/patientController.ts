@@ -63,7 +63,7 @@ const register = asyncHandler(async (req: Request, res: Response): Promise<void>
     }
 
     if (password !== rePassword) {
-        res.status(400).json({message: 'Passwords don\'t match!'});
+        res.status(400).json({ message: 'Passwords don\'t match!' });
         return;
     }
 
@@ -104,6 +104,19 @@ const logout = (req: Request, res: Response) => {
     res.json({
         message: 'Successfully logged out!'
     });
+
+    // const currUser = req.user;
+
+    //   if (!currUser) {
+    //     res.clearCookie(authCookieName);
+
+    //     return res.status(403).json({ message: "This page not allowed!" });
+    //   }
+
+    //   res.removeHeader("Authorization");
+    //   res.clearCookie(authCookieName);
+    //   res.setHeader('Cache-Control', 'no-cache');
+    //   res.json({ message: "Successfully logged out!" });
 };
 
 export default { login, register, logout };

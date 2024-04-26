@@ -61,6 +61,8 @@ export class PatientService {
     this.patient$$.next(new Patient());
     localStorage.removeItem(PATIENT_KEY);
     window.location.reload();
+
+    //have to send request to the server for logout
   }
 
   private setPatientToLocaleStorage(patient: Patient) {
