@@ -1,4 +1,5 @@
 export class Appointment {
+    _id!: string;
     date!: string;
     time!: string;
     reason!: string;
