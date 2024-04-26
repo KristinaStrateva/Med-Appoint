@@ -1,5 +1,6 @@
 import { Component, Input, OnInit } from '@angular/core';
-import { CarouselImage } from 'src/app/types/carouselImage';
+import { CarouselImage } from 'src/app/shared/interfaces/ICarousel';
+import { IDoctor } from '../interfaces/IDoctor';
 
 @Component({
   selector: 'app-carousel',
@@ -7,7 +8,7 @@ import { CarouselImage } from 'src/app/types/carouselImage';
   styleUrls: ['./carousel.component.css']
 })
 export class CarouselComponent implements OnInit {
-  @Input() images: CarouselImage[] = [];
+  @Input() images: IDoctor[] = [];
   @Input() indicators: boolean = true;
 
   selectedIndex: number = 0;

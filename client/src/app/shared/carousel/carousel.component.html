@@ -1,9 +1,9 @@
 <div *ngIf="images && images.length > 0" class="carousel-container">
     <div class="img-container" *ngFor="let image of images, let i = index" [ngClass]="{'image-active': selectedIndex === i}">
-        <img [src]="image.imageUrl" [alt]="image.imageData"
+        <img [src]="image.imageUrl" [alt]="image.medSpeciality"
             >
         <div class="owl-carousel-text">
-            <h1 class="display-1 text-white mb-0">{{image.imageData}}</h1>
+            <h1 class="display-1 text-white mb-0">{{image.medSpeciality}}</h1>
         </div>
     </div>
     <div *ngIf="indicators" class="carousel-dot-container">
