@@ -5,13 +5,13 @@
             <div class="row g-4">
                 <div class="col-sm-4">
                     <div class="border-start border-light ps-4">
-                        <h2 class="text-white mb-1" data-toggle="counter-up">6</h2>
+                        <h2 class="text-white mb-1" data-toggle="counter-up">{{doctorsByMedSpec.length}}</h2>
                         <p class="text-light mb-0">Expert Doctors</p>
                     </div>
                 </div>
                 <div class="col-sm-4">
                     <div class="border-start border-light ps-4">
-                        <h2 class="text-white mb-1" data-toggle="counter-up">25</h2>
+                        <h2 class="text-white mb-1" data-toggle="counter-up">{{allDoctors.length + 10}}</h2>
                         <p class="text-light mb-0">Medical Stuff</p>
                     </div>
                 </div>
@@ -27,7 +27,7 @@
             <div class="owl-carousel header-carousel owl-loaded owl-drag">
                 <div class="owl-stage-outer">
                     <div class="owl-stage">
-                        <app-carousel [images]="images"></app-carousel>
+                        <app-carousel [images]="doctorsByMedSpec"></app-carousel>
                     </div>
                 </div>
             </div>
