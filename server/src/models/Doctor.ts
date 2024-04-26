@@ -16,6 +16,9 @@ const doctorSchema: Schema = new Schema({
         type: String,
         enum: ['General Practice/GP', 'Pediatrics', 'Orthopedics', 'Neurology', 'Cardiology', 'Dermatology']
     },
+    imageUrl: {
+        type: String,
+    },
     appointments: [
         {
             type: mongoose.Types.ObjectId,
