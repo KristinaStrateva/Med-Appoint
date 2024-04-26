@@ -19,7 +19,9 @@ const login = asyncHandler(async (req: Request, res: Response): Promise<void> =>
         return;
     }
 
-    const patient = await Patient.findOne({ email }).populate('appointments');
+    const patient = await Patient.findOne({ email })?.populate('appointments');
+
+    console.log(patient);
 
     if (!patient) {
         res.status(401).json({ message: 'Unauthorized: Invalid email or password!' });
