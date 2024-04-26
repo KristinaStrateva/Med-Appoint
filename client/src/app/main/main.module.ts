@@ -11,7 +11,6 @@ import { FeaturesComponent } from './features/features.component';
 import { AppointmentComponent } from './appointment/appointment.component';
 
 
-
 @NgModule({
   declarations: [
     MainComponent,
