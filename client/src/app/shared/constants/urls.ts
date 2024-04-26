@@ -1,6 +1,6 @@
 const BASE_URL = 'http://localhost:3500';
 
-// export const DOCTORS_URL = BASE_URL + '/doctors';
+export const DOCTORS_URL = BASE_URL + '/';
 
 
 export const PATIENT_LOGIN_URL = BASE_URL + '/patients/login';
