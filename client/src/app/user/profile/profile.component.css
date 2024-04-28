@@ -1,0 +1,266 @@
+section {
+    display: block
+}
+
+.container {
+    width: 100%;
+    padding-right: 15px;
+    padding-left: 15px;
+    margin-right: auto;
+    margin-left: auto
+}
+
+@media (min-width:576px) {
+    .container {
+        max-width: 540px
+    }
+}
+
+@media (min-width:768px) {
+    .container {
+        max-width: 720px
+    }
+}
+
+@media (min-width:992px) {
+    .container {
+        max-width: 960px
+    }
+}
+
+@media (min-width:1200px) {
+    .container {
+        max-width: 1140px
+    }
+}
+
+.row {
+    display: -ms-flexbox;
+    display: flex;
+    -ms-flex-wrap: wrap;
+    flex-wrap: wrap;
+    margin-right: -15px;
+    margin-left: -15px
+}
+
+col-12 {
+    position: relative;
+    width: 100%;
+    min-height: 1px;
+    padding-right: 15px;
+    padding-left: 15px
+}
+
+.breadcrumbs {
+    background-image: url('../../../../../Project_CSS_Templates/mediplus-lite/img/bread-bg.jpg');
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    position: relative;
+    padding: 120px 0px;
+}
+
+.breadcrumbs .bread-inner {
+    z-index: 22;
+    text-align: center;
+}
+
+.breadcrumbs h2 {
+    color: #fff;
+    text-transform: capitalize;
+    font-size: 38px;
+    font-weight: 700;
+    margin: 0;
+    padding: 0;
+}
+
+.breadcrumbs .bread-list {
+    display: inline-block;
+    margin-top: 20px;
+}
+
+.breadcrumbs ul li {
+    display: inline-block;
+    position: relative;
+    color: #fff;
+    font-size: 15px;
+    font-weight: 500;
+    text-transform: capitalize;
+}
+
+.breadcrumbs ul li i {
+    margin: 0px 10px;
+    font-size: 14px;
+    font-weight: 600;
+    color: #fff;
+}
+
+.breadcrumbs ul li a {
+    color: #fff;
+    font-size: 15px;
+    font-weight: 500;
+    text-transform: capitalize;
+    margin: 0;
+    padding: 0;
+}
+
+.breadcrumbs ul li a:hover {
+    color: #2C2D3F;
+}
+
+.breadcrumbs ul li.active a {
+    color: #fff;
+    display: inline-block;
+}
+
+.icofont-simple-right:before {
+    content: "\eab8"
+}
+
+.pf-details .date ul li {
+    margin-right: 25px;
+    font-size: 13px;
+}
+
+.pf-details .body-text h3 {
+    font-size: 24px;
+    font-weight: 600;
+    color: #333;
+    margin-top: 30px;
+}
+
+.pf-details .date ul li {
+    margin-right: 25px;
+    font-size: 13px;
+}
+
+.pf-details .date ul li {
+    margin-right: 25px;
+    font-size: 13px;
+    display: block;
+    text-align: left;
+    margin-bottom: 8px;
+}
+
+.pf-details .date ul li:last-child {
+    margin-bottom: 0;
+}
+
+.pf-details .body-text h3 {
+    font-size: 22px;
+    font-weight: 600;
+    color: #333;
+    margin-top: 30px;
+}
+
+.pf-details .image-slider .owl-nav {
+    display: none;
+}
+
+.pf-details .image-slider .owl-nav{
+	margin: 0;
+    position: absolute;
+    top: 50%;
+    width: 100%;
+	margin-top:-25px;
+}
+.pf-details .image-slider .owl-carousel .owl-nav div {
+	height: 50px;
+	width: 50px;
+	line-height: 45px;
+	background: #fff;
+	color: #1A76D1;
+	position: absolute;
+	margin: 0;
+	border-radius: 100%;
+	font-size: 20px;
+	text-align: center;
+	-webkit-transition: all 0.4s ease;
+	-moz-transition: all 0.4s ease;
+	transition: all 0.4s ease;
+	box-shadow: 0px 0px 10px #0000001a;
+}
+.pf-details .image-slider .owl-carousel .owl-nav div:hover{
+	color:#fff;
+	background:#1A76D1;
+}
+.pf-details .image-slider .owl-carousel .owl-controls .owl-nav .owl-prev{
+	left:20px;
+}
+.pf-details .image-slider .owl-carousel .owl-controls .owl-nav .owl-next{
+	right:20px;
+}
+.pf-details .image-slider{
+	border-radius:8px 8px 0 0;
+}
+.pf-details .image-slider img{
+	height:100%;
+	width:100%;
+}
+.pf-details .date{
+	background: #1a76d1;
+	display: block;
+	padding: 20px;
+	text-align: center;
+	border-radius: 0;
+	border: none;
+	margin: 0;
+	margin-top: -1px;
+}
+.pf-details .date ul li{
+	font-size:16px;
+	color:#fff;
+	display:inline-block;
+	margin-right:60px;
+}
+.pf-details .date ul li:last-child{
+	margin:0;
+}
+.pf-details .date ul li span{
+	font-weight:500;
+	display:inline-block;
+	margin-right:5px;
+}
+.pf-details .body-text h3 {
+	font-size: 30px;
+	font-weight: 600;
+	color: #333;
+	margin-top: 40px;
+}
+.pf-details .body-text p{
+	margin-top:20px;
+}
+.pf-details .body-text .share{
+	margin-top:40px;
+}
+.pf-details .body-text .share h4 {
+	font-size: 15px;
+	font-weight: 500;
+	display: inline-block;
+}
+.pf-details .body-text .share ul{
+	display:inline-block;
+	margin-left:12px;
+}
+.pf-details .body-text .share ul li{
+	display:inline-block;
+	margin-right:10px;
+}
+.pf-details .body-text .share ul li:last-child{
+	margin-right:0;
+}
+.pf-details .body-text .share ul li a{
+	height:35px;
+	width:35px;
+	line-height:35px;
+	text-align:center;
+	border:1px solid #C8C8C8;
+	color:#757575;
+	display:block;
+	border-radius:50%;
+}
+.pf-details .body-text .share ul li a:hover{
+	color:#fff;
+	border-color:transparent;
+	background:#1A76D1;
+}
