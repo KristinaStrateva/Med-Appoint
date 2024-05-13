@@ -4,14 +4,16 @@ const ACCESS_TOKEN_SECRET: string | undefined = process.env.ACCESS_TOKEN_SECRET;
 
 export interface DecodedToken {
     _id: string;
-    username: string;
+    firstName: string;
+    lastName: string;
     email: string;
 };
 
 const accessTokenGenerator = async (user: any): Promise<string | undefined> => {
     const payload: DecodedToken = {
         _id: user._id,
-        username: user.username,
+        firstName: user.firstName,
+        lastName: user.lastName,
         email: user.email,
     };
 
