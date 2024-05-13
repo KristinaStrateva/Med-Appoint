@@ -7,6 +7,5 @@ const router: Router = express.Router();
 
 router.post('/login', validations.loginValidation, loginLimiter, patientController.login);
 router.post('/register', validations.registerValidation, patientController.register);
-router.post('/logout', patientController.logout);
 
 export default router;

@@ -5,6 +5,10 @@ import bcrypt from 'bcrypt';
 import Patient from '../models/Patient';
 import accessTokenGenerator from '../utils/tokenGenerator';
 
+interface CustomRequest extends Request {
+    user?: any;
+}
+
 // @desc Sign in existing user
 // @route POST /login
 // @access Public
@@ -20,8 +24,6 @@ const login = asyncHandler(async (req: Request, res: Response): Promise<void> =>
     }
 
     const patient = await Patient.findOne({ email })?.populate('appointments');
-
-    console.log(patient);
 
     if (!patient) {
         res.status(401).json({ message: 'Unauthorized: Invalid email or password!' });
@@ -96,29 +98,5 @@ const register = asyncHandler(async (req: Request, res: Response): Promise<void>
     res.status(201).json(userData);
 });
 
-// @desc Logout an user
-// @route POST /logout
-// @access Public
 
-const logout = (req: Request, res: Response) => {
-    res.removeHeader('Authorization');
-
-    res.json({
-        message: 'Successfully logged out!'
-    });
-
-    // const currUser = req.user;
-
-    //   if (!currUser) {
-    //     res.clearCookie(authCookieName);
-
-    //     return res.status(403).json({ message: "This page not allowed!" });
-    //   }
-
-    //   res.removeHeader("Authorization");
-    //   res.clearCookie(authCookieName);
-    //   res.setHeader('Cache-Control', 'no-cache');
-    //   res.json({ message: "Successfully logged out!" });
-};
-
-export default { login, register, logout };
+export default { login, register };
