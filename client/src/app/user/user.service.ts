@@ -22,6 +22,10 @@ export class PatientService {
     this.patient$ = this.patient$$.asObservable();
   }
 
+  public get currentUser(): Patient {
+    return this.patient$$.value;
+  }
+
   login(patientLogin: IPatientLogin): Observable<Patient> {
     return this.http.post<Patient>(PATIENT_LOGIN_URL, patientLogin).pipe(
       tap({
