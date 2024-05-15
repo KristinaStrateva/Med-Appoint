@@ -9,6 +9,7 @@ import { ContactComponent } from './contact/contact.component';
 import { RouterModule } from '@angular/router';
 import { FeaturesComponent } from './features/features.component';
 import { AppointmentComponent } from './appointment/appointment.component';
+import { ReactiveFormsModule } from '@angular/forms';
 
 
 @NgModule({
@@ -24,6 +25,7 @@ import { AppointmentComponent } from './appointment/appointment.component';
     CommonModule,
     SharedModule,
     MainRoutingModule,
+    ReactiveFormsModule,
     RouterModule
   ],
   exports: [
