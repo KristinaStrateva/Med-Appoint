@@ -5,13 +5,14 @@ import {
   HttpEvent,
   HttpInterceptor
 } from '@angular/common/http';
-import { Observable } from 'rxjs';
+import { Observable, catchError } from 'rxjs';
 import { PatientService } from '../user/user.service';
+import { Router } from '@angular/router';
 
 @Injectable()
 export class AuthInterceptor implements HttpInterceptor {
 
-  constructor(private userService: PatientService) {}
+  constructor(private userService: PatientService, private router: Router) { }
 
   intercept(request: HttpRequest<unknown>, next: HttpHandler): Observable<HttpEvent<unknown>> {
     const patient = this.userService.currentUser;
@@ -24,6 +25,14 @@ export class AuthInterceptor implements HttpInterceptor {
       })
     }
 
-    return next.handle(request);
+    return next.handle(request).pipe(
+      catchError((errorResponse) => {
+        if (request.url === '/appointments' && errorResponse.status === 401) {
+          this.router.navigateByUrl('/auth/login');
+        }
+
+        return [errorResponse];
+      })
+    );
   }
 }
