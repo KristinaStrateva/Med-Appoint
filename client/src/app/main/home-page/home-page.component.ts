@@ -11,6 +11,7 @@ import { IDoctor } from 'src/app/shared/interfaces/IDoctor';
 export class HomePageComponent implements OnInit {
   allDoctors: IDoctor[] = [];
   doctorsByMedSpec: IDoctor[] = [];
+  patientsAmount: number = 0;
 
   constructor(private appService: AppService) {
 
@@ -20,6 +21,7 @@ export class HomePageComponent implements OnInit {
     this.appService.getDoctors().subscribe(data => {
       this.allDoctors = data.allDoctors;
       this.doctorsByMedSpec = data.medSpecialities;
+      this.patientsAmount = data.patientsAmount;
     });
   }
   
