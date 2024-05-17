@@ -6,31 +6,16 @@ export interface AppointmentDocument extends Document {
     reason: string;
 }
 
-const dateSchema: Schema = new Schema(
-    {
-        day: String,
-        month: String,
-        year: String
-    }
-);
-
-const timeSchema: Schema = new Schema(
-    {
-        hour: String,
-        minutes: String
-    }
-)
-
 const appointmentSchema: Schema = new Schema(
     {
         date: {
-            type: mongoose.Types.ObjectId,
-            ref: 'dateSchema'
+            type: String,
+            required: [true, 'Date for appointment is required!'],
         },
         time: [
             {
-                type: mongoose.Types.ObjectId,
-                ref: 'timeSchema'
+                type: String,
+                required: [true, 'Time for appointment is required!'],
             }
         ],
         reason: {
