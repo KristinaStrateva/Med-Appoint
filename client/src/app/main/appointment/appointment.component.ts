@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { AppService } from 'src/app/app.service';
 import { IDoctor } from 'src/app/shared/interfaces/IDoctor';
+import generateDates from 'src/app/shared/utils/generateDate';
 
 @Component({
   selector: 'app-appointment',
@@ -11,6 +12,7 @@ import { IDoctor } from 'src/app/shared/interfaces/IDoctor';
 export class AppointmentComponent implements OnInit {
   specialties: string[] = [];
   allDoctors: IDoctor[] = [];
+  allDates: string[] = [];
   doctors: IDoctor[] = [];
   dates: string[] = [];
   times: string[] = [];
@@ -34,6 +36,8 @@ export class AppointmentComponent implements OnInit {
         this.specialties.push(specialty.medSpeciality);
       }
     });
+
+    this.allDates = generateDates();
   }
   
   loadDoctorsBySpecialty(event: Event): void {
@@ -48,7 +52,12 @@ export class AppointmentComponent implements OnInit {
     const doctorId: string = (event.target as HTMLSelectElement).value;
 
     //Have to get all available dates for the selected doctor
-    // this.dates = this.allDoctors.find(doctor => doctor._id === doctorId)?.appointments.filter(appointment => appointment.date !== )
+    this.dates = this.allDoctors.find(doctor => doctor._id === doctorId)?.appointments.filter(appointment => !this.allDates.includes(appointment.date)).map(appointment => appointment.date)!;
+
+    if (this.dates.length === 0) {
+      this.dates = this.allDates;
+    }
+
     this.appointmentForm.controls['selectedDate'].enable();
   }
 
