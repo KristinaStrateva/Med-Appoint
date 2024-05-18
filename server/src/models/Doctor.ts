@@ -1,11 +1,9 @@
 import mongoose, { Schema, Document } from 'mongoose';
-import { ObjectId } from 'mongodb';
-import { AppointmentDocument } from './Appointment';
 
 export interface DoctorDocument extends Document {
     name: string;
     medSpeciality: 'General Practice/GP' | 'Pediatrics' | 'Orthopedics' | 'Neurology' | 'Cardiology' | 'Dermatology';
-    appointments: ObjectId[] | AppointmentDocument[];
+    appointments: Record<string, string[]>;
 }
 
 const doctorSchema: Schema = new Schema({
@@ -19,12 +17,10 @@ const doctorSchema: Schema = new Schema({
     imageUrl: {
         type: String,
     },
-    appointments: [
-        {
-            type: mongoose.Types.ObjectId,
-            ref: 'Appointment',
-        }
-    ]
+    appointments: {
+        type: Schema.Types.Mixed,
+        default: {},
+    }
 });
 
 const Doctor = mongoose.model<DoctorDocument>('Doctor', doctorSchema);
