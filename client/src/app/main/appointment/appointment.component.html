@@ -48,10 +48,8 @@
                             </div>
                             <div class="col-12 col-sm-6">
                                 <select formControlName="selectedTime" class="form-select border-0" style="height: 55px;">
-                                    <option selected>Choose Time</option>
-                                    <option value="1">Time 1</option>
-                                    <option value="2">Time 2</option>
-                                    <option value="3">Time 3</option>
+                                    <!-- <option selected>Choose Time</option> -->
+                                    <option *ngFor="let time of times" [value]="time">{{time}}</option>
                                 </select>
                             </div>
                             <div class="col-12">

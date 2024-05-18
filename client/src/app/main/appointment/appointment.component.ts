@@ -3,6 +3,7 @@ import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { AppService } from 'src/app/app.service';
 import { IDoctor } from 'src/app/shared/interfaces/IDoctor';
 import generateDates from 'src/app/shared/utils/generateDate';
+import generateHours from 'src/app/shared/utils/generateHours';
 
 @Component({
   selector: 'app-appointment',
@@ -13,7 +14,9 @@ export class AppointmentComponent implements OnInit {
   specialties: string[] = [];
   allDoctors: IDoctor[] = [];
   allDates: string[] = [];
+  allTimes: string[] = [];
   doctors: IDoctor[] = [];
+  doctorId: string = '';
   dates: string[] = [];
   times: string[] = [];
   appointmentForm!: FormGroup;
@@ -38,9 +41,14 @@ export class AppointmentComponent implements OnInit {
     });
 
     this.allDates = generateDates();
+    this.allTimes = generateHours;
   }
 
   loadDoctorsBySpecialty(event: Event): void {
+    this.appointmentForm.controls['selectedDoctor'].reset();
+    this.appointmentForm.controls['selectedDate'].reset();
+    this.appointmentForm.controls['selectedTime'].reset();
+
     const specialty: string = (event.target as HTMLSelectElement).value;
 
     this.doctors = this.allDoctors.filter(doctor => doctor.medSpeciality === specialty);
@@ -49,12 +57,19 @@ export class AppointmentComponent implements OnInit {
   }
 
   loadDatesByDoctor(event: Event): void {
-    const doctorId: string = (event.target as HTMLSelectElement).value;
+    this.appointmentForm.controls['selectedDate'].reset();
+    this.appointmentForm.controls['selectedTime'].reset();
 
-    this.dates = this.allDoctors
-      .find(doctor => doctor._id === doctorId)?.appointments
-      .filter(appointment => !this.allDates.includes(appointment.date))
-      .map(appointment => appointment.date)!;
+    const currDoctorId: string = (event.target as HTMLSelectElement).value;
+    this.doctorId = currDoctorId;
+
+    const docAppointments = this.allDoctors.find(doctor => doctor._id === currDoctorId)?.appointments;
+
+    for (const date in docAppointments) {
+      if (!this.allDates.includes(date) || (this.allDates.includes(date) && docAppointments[date].length <= 8)) {
+        this.dates.push(date);
+      }
+    }
 
     if (this.dates.length === 0) {
       this.dates = this.allDates;
@@ -64,9 +79,18 @@ export class AppointmentComponent implements OnInit {
   }
 
   loadTimesByDate(event: Event): void {
+    this.appointmentForm.controls['selectedTime'].reset();
+
     const date = (event.target as HTMLSelectElement).value;
 
-    //Have to get all available hours for the selected date
+    const hoursForThatDate = this.allDoctors.find(doctor => doctor._id === this.doctorId)?.appointments[date];
+
+    if (hoursForThatDate?.length === 0) {
+      this.times = this.allTimes;
+      return;
+    }
+
+    this.times = this.allTimes.filter(hour => !hoursForThatDate?.includes(hour))
 
     this.appointmentForm.controls['selectedTime'].enable();
   }
