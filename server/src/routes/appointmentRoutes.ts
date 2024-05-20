@@ -4,6 +4,7 @@ import verifyJWT from '../middlewares/verifyJWT';
 
 const router: Router = express.Router();
 
-router.get('/appointments', verifyJWT, appointmentsController.getAllAppointmentsForADoc);
+router.get('/', verifyJWT, appointmentsController.getAllAppointmentsForADoc);
+router.post('/add', appointmentsController.addAppointment);
 
 export default router;

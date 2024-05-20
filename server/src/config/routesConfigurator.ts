@@ -7,6 +7,6 @@ import errorHandler from '../middlewares/errorHandler';
 export default function configureRoutes(app: Express): void {
     app.use(homeRouter);
     app.use('/patients', patientRouter);
-    app.use('/schedule', appointmentRouter);
+    app.use('/appointments', appointmentRouter);
     app.use(errorHandler);
 }
